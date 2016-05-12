@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PhotoGallery Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="js/jqueryui/jquery-ui.min.css"><link rel="stylesheet" type="text/css" href="js/jqueryui/jquery-ui.theme.min.css">
+
+  <script src="js/options.js"></script>
+<script src="js/admin.js">  </script>
+ <script src="js/jqueryui/jquery-ui.min.js"></script>
+<script src="js/jquerymobile/jquery.mobile-1.4.5.js"></script><link rel="stylesheet" type="text/css" href="js/jquerymobile/jquery.mobile-1.4.5.min.css"><script src="js/jqueryui/jquery.ui.touch-punch.min.js"></script>
+ 
+</head>
+
+<body>
+<div data-role="page" id="dynamicPage">
+<a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop" style="margin-left:15px">Sign in</a>
+<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+        <div style="padding:10px 20px;"><h3>Please sign in</h3><label for="un" class="ui-hidden-accessible">Username:</label><input type="text" name="user" id="un" value="" placeholder="username" data-theme="a"><label for="pw" class="ui-hidden-accessible">Password:</label><input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a"><a href="#" id="loginbtn" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</a>
+        </div>
+</div>
+<a href="#newAlbum" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-a">New Album</a>
+<div data-role="header">
+
+	</div>
+<div role="main" class="ui-content">
+<ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" id="sortable">
+   
+</ul>
+<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+<form>    <h3>Update Album</h3>
+     <label for="text-3">Title</label>
+     <input type="text" data-clear-btn="true" name="text-3" id="update-title" value="">
+          <label for="text-3">Description</label>
+     <input type="text" data-clear-btn="true" name="text-4" id="update-desc" value="">
+    <a href="index.html" data-rel="back" id="update-confirm" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-btn-inline ui-mini">Confirm</a>
+    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a><br>
+    <a href="index.html" data-rel="back" class="ui-btn ui-corner-all ui-btn-inline ui-mini" id="deleteAlbum" style="background-color:#EE7777;color:#630D0D;text-shadow:none;">Delete Album</a>
+    </form>
+</div>
+<div data-role="popup" id="newAlbum" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+<h3>New Album</h3>
+     <label for="text-3">Title</label>
+     <input type="text" data-clear-btn="true" name="text-5" id="newAlbumName" value="">
+          <label for="text-3">Description</label>
+     <input type="text" data-clear-btn="true" name="text-6" id="newAlbumDescription" value="">
+    <a href="index.html" id="newAlbumConfirm" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-btn-inline ui-mini">Confirm</a>
+    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a><br>
+</div>
+</div></div>
+<div data-role="page" id="bar">
+
+<a href="#dynamicPage" data-role="button"  data-direction="reverse" data-transition="slide" id="backbtn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-back ui-btn-icon-left ui-btn-a" style="margin-left:15px">Back</a>
+<a href="#upload" id="uploadBtn" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-plus ui-btn-icon-left ui-btn-a" style="margin-left:5px">Upload</a>
+<div style="width:0;height:0;overflow:hidden">
+  <form id="uploadForm" method="post" enctype="multipart/form-data"><input name="upload" type="file" id="fileinput" name="photos" multiple></form>
+</div>
+<div id="albumName" data-role="header">
+<h2 data-thumbnail="" id="albumTitle">Album Name</h2>
+	</div>
+<div role="main" class="ui-content" id="albumMain">
+<ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" id="sortable2">
+   
+</ul>
+<div data-role="popup" id="options" data-theme="a" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+<h3>Update Picture</h3>
+     <label for="text-3">Filename</label>
+     <input type="text" data-clear-btn="true" name="text-5" id="photoName" value="">
+          <label for="text-3">Description</label>
+     <input type="text" data-clear-btn="true" name="text-6" id="photoDescription" value="">
+    <input type="checkbox" name="checkbox-1a" id="checkbox-1a">
+    <label for="checkbox-1a">Thumbnail</label>
+    <br>
+    <a href="index.html" id="photoConfirm" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-b ui-btn-inline ui-mini">Confirm</a>
+    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Cancel</a><br>
+    <a href="index.html" data-rel="back" class="ui-btn ui-corner-all ui-btn-inline ui-mini" id="deletePhoto" style="background-color:#EE7777;color:#630D0D;text-shadow:none;">Delete Picture</a>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

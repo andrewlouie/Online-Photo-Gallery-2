@@ -1,0 +1,591 @@
+/*$grey: #5e6562;
+$text: white;
+$dark: black;
+$listitemborder: black;
+$listitemtext: white;
+$listitemgradient1: $grey;
+$listitemgradient2: $dark;
+$leftsidebackground: darken($grey,30%);
+$leftsidecontainterborder: darken($grey,30%);
+$mainbackground:darken($grey,30%);
+$highlight: rgba(196,208,0,1.00);
+$listitemweight: normal;*/
+/* line 30, ../sass/stylesheet.scss */
+.noselect, * {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     not supported by any browser */
+}
+
+/* line 124, ../sass/stylesheet.scss */
+.arrow, #aapicmain .downarrow, #aapicmain .uparrow, #aapicmain #rightside section.aagallery .bottom .leftarrow, #aapicmain #rightside section.aagallery .bottom .rightarrow {
+  -webkit-filter: drop-shadow(0px 0px 0px black);
+  -webkit-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+/* line 127, ../sass/stylesheet.scss */
+.arrow:hover, #aapicmain .downarrow:hover, #aapicmain .uparrow:hover, #aapicmain #rightside section.aagallery .bottom .leftarrow:hover, #aapicmain #rightside section.aagallery .bottom .rightarrow:hover {
+  -webkit-filter: drop-shadow(0px 0px 8px #7b2984);
+}
+
+/* line 129, ../sass/stylesheet.scss */
+body {
+  overflow: hidden;
+  width: 96%;
+}
+
+/* line 130, ../sass/stylesheet.scss */
+* {
+  cursor: default;
+}
+
+/* line 131, ../sass/stylesheet.scss */
+#aapicmain {
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 96%;
+  background-color: white;
+  display: block;
+}
+/* line 132, ../sass/stylesheet.scss */
+#aapicmain a {
+  border: none;
+  text-decoration: none;
+}
+/* line 136, ../sass/stylesheet.scss */
+#aapicmain .downarrow {
+  position: absolute;
+  bottom: 0;
+  width: 94%;
+  text-align: center;
+  left: 0;
+  z-index: 2;
+  visibility: hidden;
+}
+/* line 69, ../sass/stylesheet.scss */
+#aapicmain .downarrow img {
+  position: absolute;
+  z-index: 2;
+  bottom: 10px;
+}
+/* line 79, ../sass/stylesheet.scss */
+#aapicmain .downarrow img {
+  position: absolute;
+  z-index: 2;
+}
+/* line 139, ../sass/stylesheet.scss */
+#aapicmain .uparrow {
+  position: absolute;
+  top: 0px;
+  display: none;
+  width: 94%;
+  text-align: center;
+  left: 0;
+  z-index: 2;
+  visibility: hidden;
+}
+/* line 79, ../sass/stylesheet.scss */
+#aapicmain .uparrow img {
+  position: absolute;
+  z-index: 2;
+}
+/* line 142, ../sass/stylesheet.scss */
+#aapicmain .leftsidecontainer {
+  width: 100%;
+  height: 99%;
+  border: 1px solid white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 22px;
+}
+@media screen and (min-width: 768px) {
+  /* line 131, ../sass/stylesheet.scss */
+  #aapicmain {
+    width: 100%;
+  }
+}
+/* line 155, ../sass/stylesheet.scss */
+#aapicmain div {
+  color: black;
+  display: inline-block;
+}
+/* line 159, ../sass/stylesheet.scss */
+#aapicmain .header {
+  text-align: center;
+  font-size: 20px;
+  padding: 5px 0px 5px 0px;
+}
+/* line 160, ../sass/stylesheet.scss */
+#aapicmain .hidden {
+  display: none;
+}
+/* line 163, ../sass/stylesheet.scss */
+#aapicmain #leftside {
+  position: relative;
+  height: 98%;
+  overflow: hidden;
+  background-color: white;
+  padding: 5px;
+  width: 98%;
+  vertical-align: top;
+}
+/* line 164, ../sass/stylesheet.scss */
+#aapicmain #leftside::-webkit-scrollbar {
+  display: none;
+}
+/* line 172, ../sass/stylesheet.scss */
+#aapicmain #leftside .album {
+  padding: 5px;
+  width: 94%;
+  height: 65px;
+  background-image: -webkit-gradient(linear, to bottom, to top, color-stop(0%, #383737), color-stop(100%, #777777));
+  background-image: -webkit-linear-gradient(to bottom, #383737, #777777);
+  background-image: -moz-linear-gradient(to bottom, #383737, #777777);
+  background-image: -o-linear-gradient(to bottom, #383737, #777777);
+  background-image: linear-gradient(to bottom, #383737, #777777);
+  -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px / 6px;
+  border-radius: 6px / 6px;
+  border-bottom: 5px solid white;
+  font-weight: bold;
+  color: #d7b556;
+}
+/* line 107, ../sass/stylesheet.scss */
+#aapicmain #leftside .album:hover {
+  background-image: -webkit-gradient(linear, to bottom, to top, color-stop(0%, #7b2984), color-stop(100%, #777777));
+  background-image: -webkit-linear-gradient(to bottom, #7b2984, #777777);
+  background-image: -moz-linear-gradient(to bottom, #7b2984, #777777);
+  background-image: -o-linear-gradient(to bottom, #7b2984, #777777);
+  background-image: linear-gradient(to bottom, #7b2984, #777777);
+}
+/* line 108, ../sass/stylesheet.scss */
+#aapicmain #leftside .album .imgcont {
+  max-width: 60px;
+  max-height: 60px;
+  width: 20%;
+  overflow: hidden;
+  vertical-align: top;
+}
+/* line 110, ../sass/stylesheet.scss */
+#aapicmain #leftside .album img {
+  max-height: 100%;
+  height: 60px;
+  width: auto;
+}
+/* line 111, ../sass/stylesheet.scss */
+#aapicmain #leftside .album .title {
+  height: 100%;
+  font-size: 14px;
+  width: 78%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2%;
+}
+/* line 174, ../sass/stylesheet.scss */
+#aapicmain #leftside .album .description {
+  font-size: 10px;
+  display: block;
+}
+/* line 180, ../sass/stylesheet.scss */
+#aapicmain #rightside {
+  background-color: white;
+  width: 98%;
+  overflow: hidden;
+}
+/* line 183, ../sass/stylesheet.scss */
+#aapicmain #rightside #backbtn {
+  float: left;
+  background-color: white;
+  color: black;
+  border-radius: 25px;
+  width: 30px;
+  line-height: 26px;
+  height: 30px;
+  text-align: center;
+  font-size: 24px;
+  border: 2px solid white;
+  margin-right: 5px;
+}
+/* line 195, ../sass/stylesheet.scss */
+#aapicmain #rightside #backbtn:hover {
+  background-color: black;
+  color: white;
+}
+/* line 201, ../sass/stylesheet.scss */
+#aapicmain #rightside .header {
+  padding: 10px;
+  text-align: left;
+  height: 35px;
+}
+/* line 203, ../sass/stylesheet.scss */
+#aapicmain #rightside .header .icons svg {
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  stroke: black;
+  fill: black;
+  width: 30px;
+}
+/* line 207, ../sass/stylesheet.scss */
+#aapicmain #rightside .header .icons svg:hover {
+  stroke: #7b2984;
+  fill: #7b2984;
+}
+/* line 217, ../sass/stylesheet.scss */
+#aapicmain #rightside .header .title {
+  display: inline-block;
+  float: left;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* line 224, ../sass/stylesheet.scss */
+#aapicmain #rightside .header .description {
+  font-size: 10px;
+  display: block;
+}
+/* line 225, ../sass/stylesheet.scss */
+#aapicmain #rightside .header .icons {
+  float: right;
+  margin-right: 5px;
+  width: 110px;
+  height: 30px;
+}
+/* line 227, ../sass/stylesheet.scss */
+#aapicmain #rightside .sectioncontainer {
+  width: 100%;
+  height: 99%;
+  border: 1px solid white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-right: 22px;
+}
+/* line 230, ../sass/stylesheet.scss */
+#aapicmain #rightside section {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  padding-left: 1%;
+  height: 90vh;
+  position: relative;
+}
+/* line 231, ../sass/stylesheet.scss */
+#aapicmain #rightside section::-webkit-scrollbar {
+  display: none;
+}
+/* line 238, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagrid {
+  text-align: center;
+}
+/* line 239, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagrid .leftarrow, #aapicmain #rightside section.aagrid .rightarrow, #aapicmain #rightside section.aagrid .mainitem {
+  display: none;
+}
+/* line 241, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagrid .item {
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 100, color-stop(0%, #251e09), color-stop(100%, #d7b556));
+  background-image: -webkit-radial-gradient(#251e09, #d7b556 100px);
+  background-image: -moz-radial-gradient(#251e09, #d7b556 100px);
+  background-image: -o-radial-gradient(#251e09, #d7b556 100px);
+  background-image: radial-gradient(#251e09, #d7b556 100px);
+  -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px / 6px;
+  border-radius: 6px / 6px;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  margin: 5px;
+  border: 4px solid black;
+}
+/* line 242, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagrid .item:hover {
+  border: 4px solid #7b2984;
+}
+/* line 253, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagrid .item img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+/* line 259, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagrid .item .title {
+  display: none;
+}
+/* line 263, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .leftarrow, #aapicmain #rightside section.aalist .rightarrow, #aapicmain #rightside section.aalist .mainitem {
+  display: none;
+}
+/* line 264, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item {
+  white-space: nowrap;
+  padding: 5px;
+  width: 94%;
+  height: 65px;
+  background-image: -webkit-gradient(linear, to bottom, to top, color-stop(0%, #383737), color-stop(100%, #777777));
+  background-image: -webkit-linear-gradient(to bottom, #383737, #777777);
+  background-image: -moz-linear-gradient(to bottom, #383737, #777777);
+  background-image: -o-linear-gradient(to bottom, #383737, #777777);
+  background-image: linear-gradient(to bottom, #383737, #777777);
+  -webkit-border-radius: 6px 6px;
+  -moz-border-radius: 6px / 6px;
+  border-radius: 6px / 6px;
+  border-bottom: 5px solid white;
+  font-weight: bold;
+  color: #d7b556;
+}
+/* line 107, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item:hover {
+  background-image: -webkit-gradient(linear, to bottom, to top, color-stop(0%, #7b2984), color-stop(100%, #777777));
+  background-image: -webkit-linear-gradient(to bottom, #7b2984, #777777);
+  background-image: -moz-linear-gradient(to bottom, #7b2984, #777777);
+  background-image: -o-linear-gradient(to bottom, #7b2984, #777777);
+  background-image: linear-gradient(to bottom, #7b2984, #777777);
+}
+/* line 108, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item .imgcont {
+  max-width: 60px;
+  max-height: 60px;
+  width: 20%;
+  overflow: hidden;
+  vertical-align: top;
+}
+/* line 110, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item img {
+  max-height: 100%;
+  height: 60px;
+  width: auto;
+}
+/* line 111, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item .title {
+  height: 100%;
+  font-size: 14px;
+  width: 78%;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2%;
+}
+/* line 267, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item .imgcont {
+  max-width: 70px;
+  max-height: 65px;
+  width: 70px;
+}
+/* line 272, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item .title {
+  min-width: 100px;
+  line-height: 65px;
+  margin-left: 3px;
+}
+/* line 277, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aalist .item img {
+  vertical-align: middle;
+}
+/* line 280, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery {
+  text-align: center;
+}
+/* line 281, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .uparrow, #aapicmain #rightside section.aagallery .downarrow {
+  display: none;
+}
+/* line 283, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottom {
+  position: absolute;
+  height: 100px;
+  width: 65%;
+  bottom: 40px;
+  width: 97%;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* line 284, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottom::-webkit-scrollbar {
+  display: none;
+}
+@media screen and (min-height: 470px) {
+  /* line 283, ../sass/stylesheet.scss */
+  #aapicmain #rightside section.aagallery .bottom {
+    height: 120px;
+    bottom: 90px;
+  }
+}
+@media screen and (min-height: 470px) and (min-width: 768px) {
+  /* line 283, ../sass/stylesheet.scss */
+  #aapicmain #rightside section.aagallery .bottom {
+    bottom: 10px;
+  }
+}
+/* line 295, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottom .leftarrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  line-height: 120px;
+  z-index: 9;
+  visibility: hidden;
+}
+/* line 61, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottom .leftarrow img {
+  vertical-align: middle;
+}
+/* line 298, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottom .rightarrow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  line-height: 120px;
+  z-index: 9;
+  visibility: hidden;
+}
+/* line 61, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottom .rightarrow img {
+  vertical-align: middle;
+}
+/* line 300, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .bottomcontainer {
+  width: 100%;
+  height: 99%;
+  border: 1px solid white;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-bottom: 22px;
+}
+/* line 303, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .item {
+  margin-right: 5px;
+  width: 150px;
+  vertical-align: top;
+  height: 150px;
+}
+/* line 304, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .item .imgcont {
+  background-color: #7b2984;
+}
+/* line 309, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .item img {
+  margin-bottom: -5px;
+  width: 100%;
+  max-height: 100%;
+}
+/* line 309, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .item img:hover {
+  opacity: 0.6;
+}
+/* line 310, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .item .title {
+  display: none;
+}
+/* line 312, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .mainitem {
+  margin-top: 2px;
+  width: 90%;
+  white-space: nowrap;
+  height: 48vh;
+}
+@media screen and (min-height: 470px) {
+  /* line 312, ../sass/stylesheet.scss */
+  #aapicmain #rightside section.aagallery .mainitem {
+    height: 58vh;
+  }
+}
+@media screen and (min-height: 550px) {
+  /* line 312, ../sass/stylesheet.scss */
+  #aapicmain #rightside section.aagallery .mainitem {
+    height: 63vh;
+  }
+}
+/* line 319, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .mainitem .middle {
+  vertical-align: middle;
+  max-width: 87%;
+  max-height: 100%;
+}
+/* line 320, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .mainitem .middle:hover {
+  -webkit-box-shadow: #7b2984 2px 2px 10px;
+  -moz-box-shadow: #7b2984 2px 2px 10px;
+  box-shadow: #7b2984 2px 2px 10px;
+}
+@media screen and (min-height: 470px) and (max-width: 768px) {
+  /* line 312, ../sass/stylesheet.scss */
+  #aapicmain #rightside section.aagallery .mainitem {
+    height: 40vh;
+  }
+}
+/* line 326, ../sass/stylesheet.scss */
+#aapicmain #rightside section.aagallery .mainitem .title {
+  font-size: 12px;
+  display: block;
+  text-align: center;
+}
+@media screen and (min-height: 470px) {
+  /* line 326, ../sass/stylesheet.scss */
+  #aapicmain #rightside section.aagallery .mainitem .title {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 480px) {
+  /* line 332, ../sass/stylesheet.scss */
+  #aapicmain #backbtn {
+    display: none;
+  }
+  /* line 333, ../sass/stylesheet.scss */
+  #aapicmain #leftside {
+    width: 35%;
+  }
+  /* line 334, ../sass/stylesheet.scss */
+  #aapicmain #rightside {
+    width: 60%;
+  }
+  /* line 335, ../sass/stylesheet.scss */
+  #aapicmain .hidden {
+    display: inline-block;
+  }
+}
+@media screen and (min-width: 768px) {
+  /* line 338, ../sass/stylesheet.scss */
+  #aapicmain #leftside {
+    width: 30%;
+  }
+  /* line 339, ../sass/stylesheet.scss */
+  #aapicmain #rightside {
+    width: 67%;
+  }
+  /* line 340, ../sass/stylesheet.scss */
+  #aapicmain .rightarrow, #aapicmain .leftarrow, #aapicmain .uparrow, #aapicmain .downarrow {
+    visibility: visible !important;
+  }
+}

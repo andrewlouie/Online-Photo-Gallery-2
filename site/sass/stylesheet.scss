@@ -1,0 +1,342 @@
+//light theme
+$grey: #d7b556;
+$text: black;
+$dark: white;
+$listitemborder: white;
+$listitemtext: #d7b556;
+$listitemgradient1: #383737;
+$listitemgradient2: #777;
+$leftsidebackground: white;
+$leftsidecontainterborder: white;
+$mainbackground:white;
+$highlight: rgba(123,41,132,1.00);
+$listitemweight: bold;
+//dark theme
+/*$grey: #5e6562;
+$text: white;
+$dark: black;
+$listitemborder: black;
+$listitemtext: white;
+$listitemgradient1: $grey;
+$listitemgradient2: $dark;
+$leftsidebackground: darken($grey,30%);
+$leftsidecontainterborder: darken($grey,30%);
+$mainbackground:darken($grey,30%);
+$highlight: rgba(196,208,0,1.00);
+$listitemweight: normal;*/
+
+@import "compass";
+
+.noselect {
+	-webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+@mixin lineart($speed) {
+	-webkit-transition: all $speed linear;
+	-o-transition: all $speed linear;
+	transition: all $speed linear;
+}
+@mixin lrarrow($right: false) {
+	@extend .arrow;
+	position: absolute;
+	@if $right == true {
+		right: 0;
+	}
+	@else {
+		left: 0;
+	}
+	top: 0;
+	height: 100%;
+	width: 25px;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 120px;
+	z-index:9;
+	visibility: hidden;
+	img { vertical-align:middle; }
+}
+@mixin udarrow($up: false) {
+	@extend .arrow;
+    position: absolute;
+    @if $up == true { top: 0px; display:none; }
+	@else {
+		bottom: 0;
+		img {
+	    	position: absolute;
+			z-index: 2;
+			bottom: 10px;
+	} }
+    width: 94%;
+    text-align: center;
+    left: 0;
+		z-index:2;
+		visibility: hidden;
+	img { position:absolute; z-index: 2; }
+}
+@mixin hidescroll($colour,$x: false) {
+	width: 100%;
+    height: 99%;
+    border: 1px solid $colour;
+	@if $x == true {
+		overflow-x:scroll;
+		overflow-y: hidden;
+		padding-bottom:22px;
+	}
+	@else {
+		overflow-y:scroll;
+		overflow-x:hidden;
+    	padding-right: 22px;
+	}
+}
+@mixin centerer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin listitem {
+	padding: 5px;
+	width: 94%;
+	height: 65px;
+	@include background-image(linear-gradient(to bottom, $listitemgradient1, $listitemgradient2));
+	&:hover { @include background-image(linear-gradient(to bottom, $highlight, $listitemgradient2)); }
+	.imgcont { max-width: 60px; max-height: 60px; width: 20%; overflow:hidden; vertical-align:top; }
+	@include border-radius(6px, 6px);
+	img { max-height: 100%; height: 60px; width: auto; }
+	.title {
+		height: 100%;
+		font-size: 14px;
+		width: 78%;
+		overflow: hidden;
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 2%;
+	}
+	border-bottom: 5px solid $listitemborder;
+  font-weight: $listitemweight;
+	color: $listitemtext;
+}
+.arrow {
+	-webkit-filter: drop-shadow(0px 0px 0px $text);
+	@include lineart(0.5s);
+	&:hover { -webkit-filter: drop-shadow(0px 0px 8px $highlight); }
+}
+body { overflow:hidden; width: 96%; }
+* { @extend .noselect; cursor: default; }
+#aapicmain {
+	a {
+		border:none;
+		text-decoration: none;
+	}
+	.downarrow {
+		@include udarrow;
+	}
+	.uparrow {
+		@include udarrow(true);
+	}
+	.leftsidecontainer {
+		@include hidescroll($leftsidecontainterborder);
+	}
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96%;
+		@media screen and (min-width: 768px) { width: 100%; }
+	background-color:$mainbackground;
+	display:block;
+	div {
+		color:$text;
+		display:inline-block;
+	}
+	.header { text-align:center; font-size: 20px; padding: 5px 0px 5px 0px; }
+	.hidden {
+		display:none;
+	}
+	#leftside {
+		&::-webkit-scrollbar { display: none; }
+		position:relative;
+		height: 98%;
+	  overflow: hidden;
+		background-color:$leftsidebackground;
+		padding: 5px;
+		width: 98%;
+		vertical-align: top;
+		.album {
+			@include listitem;
+			.description {
+				font-size: 10px;
+				display:block;
+			}
+		}
+	}
+	#rightside {
+		background-color: $dark;
+		width: 98%;
+		#backbtn {
+			float: left;
+	    background-color: $dark;
+	    color: $text;
+	    border-radius: 25px;
+	    width: 30px;
+	    line-height: 26px;
+	    height: 30px;
+	    text-align: center;
+	    font-size: 24px;
+	    border: 2px solid white;
+	    margin-right: 5px;
+			&:hover {
+				background-color: $text;
+				color: $dark
+			}
+		}
+		overflow:hidden;
+		.header {
+			.icons {
+				svg {
+				@include lineart(0.3s);
+				stroke: $text;
+					fill:$text;
+					&:hover {
+						stroke: $highlight;
+						fill: $highlight;
+					}
+					width: 30px;
+				}
+			}
+			padding: 10px;
+			text-align:left;
+			height: 35px;
+			.title {
+			    display: inline-block;
+				float: left;
+				max-width: 100%;
+				overflow: hidden;
+			    white-space: nowrap;
+			}
+			.description { font-size: 10px; display:block;}
+			.icons { float:right; margin-right: 5px; width: 110px; height: 30px; }
+		}
+		.sectioncontainer {
+			@include hidescroll($dark);
+		}
+		section {
+			&::-webkit-scrollbar { display: none; }
+			width: 100%;
+			display:block;
+			overflow: hidden;
+			padding-left: 1%;
+			height: 90vh;
+			position:relative;
+			&.aagrid {
+				.leftarrow,.rightarrow,.mainitem {display: none; }
+				text-align:center;
+				.item {
+					&:hover {
+						border: 4px solid $highlight;
+					}
+					@include lineart(0.3s);
+					@include background-image(radial-gradient(darken($grey,50%), $grey 100px));
+					@include border-radius(6px, 6px);
+					width: 140px;
+					height: 140px;
+					position:relative;
+					margin: 5px;
+					border: 4px solid $text;
+					img {
+						@include centerer;
+						width: auto;
+						max-width: 100%;
+						max-height: 100%;
+					}
+					.title { display:none; }
+				}
+			}
+			&.aalist {
+				.leftarrow,.rightarrow,.mainitem { display: none; }
+				.item {
+					white-space: nowrap;
+					@include listitem;
+				    .imgcont {
+						max-width: 70px;
+						max-height: 65px;
+						width: 70px;
+					}
+					.title {
+						min-width:100px;
+						line-height: 65px;
+						margin-left: 3px;
+					}
+					img { vertical-align:middle; }
+				}
+			}
+			&.aagallery {
+				.uparrow,.downarrow { display:none; }
+				text-align:center;
+				.bottom {
+					&::-webkit-scrollbar { display: none; }
+					position: absolute;
+					height: 100px;
+					@media screen and (min-height: 470px) { height: 120px; bottom: 90px;}
+					@media screen and (min-height: 470px) and (min-width: 768px) { bottom: 10px; }
+					width: 65%;
+					bottom: 40px;
+					width: 97%;
+					left: 0;
+					overflow: hidden;
+					white-space: nowrap;
+					.leftarrow {
+					    @include lrarrow;
+					}
+					.rightarrow { @include lrarrow(true); }
+				}
+				.bottomcontainer {
+					@include hidescroll($dark,true);
+				}
+				.item {
+					.imgcont { background-color: $highlight; }
+					margin-right: 5px;
+					width: 150px;
+				  vertical-align: top;
+					height: 150px;
+					img { margin-bottom: -5px; width: 100%; max-height: 100%; &:hover { opacity: 0.6; } }
+					.title { display:none; }
+				}
+				.mainitem {
+					margin-top: 2px;
+					width: 90%;
+					white-space:nowrap;
+					height: 48vh;
+					@media screen and (min-height: 470px) { height: 58vh; }
+					@media screen and (min-height: 550px) { height: 63vh; }
+					.middle {
+						&:hover { @include box-shadow($highlight 2px 2px 10px); }
+						vertical-align:middle;
+						max-width: 87%;
+						max-height: 100%;
+					}
+					@media screen and (min-height: 470px) and (max-width: 768px) { height: 40vh; }
+					.title { font-size: 12px; @media screen and (min-height: 470px) { font-size: 16px; } display:block; text-align:center; }
+				}
+			}
+		}
+	}
+	@media screen and (min-width: 480px) {
+		#backbtn { display:none; }
+		#leftside { width: 35% }
+		#rightside { width: 60%; }
+		.hidden { display:inline-block; }
+	}
+	@media screen and (min-width: 768px) {
+		#leftside {	width:30%; }
+		#rightside { width: 67%; }
+		.rightarrow,.leftarrow,.uparrow,.downarrow { visibility:visible !important; }
+	}
+}

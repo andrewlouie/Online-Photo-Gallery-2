@@ -1,0 +1,176 @@
+<!doctype html>
+<html ng-app="myAppModule" ng-controller="myDemoCtrl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<script src="js/options.js"></script>
+<script>document.title = options.title</script>
+<link ng-href="{{options.cssFile}}" rel="stylesheet" type="text/css">
+<script src="js/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular-touch.min.js"></script>
+<script src="js/myAppModule.js"></script>
+<!-- Add jQuery library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.js"></script>
+<!-- Add mousewheel plugin (this is optional) -->
+<script type="text/javascript" src="./fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="./fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="./fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="./fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="./fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="./fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="./fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="./fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('.fancybox-button').fancybox({
+		 width: "100%",
+		 margin: [0, 0, 0, 0],
+		 padding: [0, 0, 0, 0],
+		 openEffect  : 'none',
+		 closeEffect : 'none',
+		 prevEffect : 'fade',
+		 nextEffect : 'fade',
+		 closeBtn  : false,
+		 arrows: false,
+		 helpers : {
+				 title : null,
+				 overlay : {
+						 css : {
+								 'background' : 'rgba(0, 0, 0, 0.95)'
+						 }
+				 },
+				 buttons : {
+				 }
+
+		 },
+		 afterShow: function() {
+				 $('.fancybox-wrap').swipe({
+						 swipe : function(event, direction) {
+								 if (direction === 'left' || direction === 'up') {
+										 $.fancybox.next( direction );
+								 } else {
+										 $.fancybox.prev( direction );
+								 }
+						 }
+				 });
+
+		 },
+
+		 afterLoad : function() {
+		 }
+ });
+
+  $('body').on('click',".aagallery .bottom .fancybox-button",function(event) {
+    if (stop) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  stop = true;
+  });
+  var timeout;
+  var clicker;
+  var amt;
+ $(".downarrow,.uparrow").on("mousedown" ,function(){
+    clicker = $('.' + $(this).attr('data-scroll'));
+    amt = parseInt($(this).attr('data-amt'),10);
+    timeout = setInterval(function(){
+      var scrolled = clicker.scrollTop() + amt;
+      clicker.animate({
+        scrollTop:  scrolled
+      },100);
+    },100);
+    return false;
+ });
+ $(".leftarrow,.rightarrow").on("mousedown" ,function(){
+   clicker = $(this).parent();
+   amt = parseInt($(this).attr('data-amt'),10);
+   timeout = setInterval(function(){
+     var scrolled = clicker.scrollLeft() + amt;
+     clicker.animate({
+       scrollLeft:  scrolled
+     },100);
+   },100);
+   return false;
+});
+ $(document).mouseup(function(){
+  clearInterval(timeout);
+  return false;
+  });
+  $('.leftsidecontainer').scroll(function() {
+    if ($(this).scrollTop() > 0) $('.leftsidecontainer .uparrow').show();
+    else $('.leftsidecontainer .uparrow').hide();
+    if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) $('.leftsidecontainer .downarrow').hide();
+    else $('.leftsidecontainer .downarrow').show();
+  });
+  $('.sectioncontainer').scroll(function() {
+    if ($(this).scrollTop() > 0) $('.sectioncontainer .uparrow').show();
+    else $('.sectioncontainer .uparrow').hide();
+    if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) $('.sectioncontainer .downarrow').hide();
+    else $('.sectioncontainer .downarrow').show();
+  });
+  $('.bottomcontainer').scroll(function() {
+    $('.leftarrow,.rightarrow').hide();
+    if ($(this).scrollLeft() > 0) $('.aagallery .sectioncontainer .leftarrow').show();
+    else $('.aagallery .sectioncontainer .leftarrow').hide();
+    if($(this).scrollLeft() + $(this).innerWidth() >= $(this)[0].scrollWidth) $('.aagallery .sectioncontainer .rightarrow').hide();
+    else $('.aagallery .sectioncontainer .rightarrow').show();
+  });
+  $('#backbtn').click(function() {
+    $('#rightside').addClass('hidden');
+    $('#leftside').removeClass('hidden');
+  });
+  $(window).resize(function() { $('.sectioncontainer,.bottomcontainer,.leftsidecontainer').scroll(); })
+});
+</script>
+</head>
+
+<body>
+    <div id="aapicmain">
+        <div id="leftside" class="albums"><div class="leftsidecontainer">
+        <header class="header">Albums</header>
+        <div class="uparrow" data-scroll="leftsidecontainer" data-amt="-100"><img src="include/up.png" alt="Up arrow"/></div>
+        <div class="downarrow" ng-click="gotoAnchor(x)" data-scroll="leftsidecontainer" data-amt="100"><img src="include/down.png" alt="Down arrow"/></div>
+
+          <div class='album' ng-repeat="thisalbum in albums" ng-click="changeTitle(thisalbum)"><div class='imgcont'>
+            <img ng-src='{{options.staticFolder}}{{options.userName}}/{{thisalbum.title}}/{{thisalbum.thumbnail}}' alt='{{thisalbum.title}}' /></div><span class='title'>{{thisalbum.title}}
+              <span class='description'>{{thisalbum.description}}</span></span></div>
+
+        </div></div>
+        <div id="rightside" class="photos hidden"><header class="header"><div class="icons">
+ <svg ng-click="changeView('aalist')" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path clip-rule="evenodd" d="M24,18.998c0,0.279-0.223,0.502-0.502,0.502h-18c-0.273,0-0.494-0.223-0.494-0.502 v-1.997c0-0.278,0.221-0.501,0.494-0.501h18c0.279,0,0.502,0.223,0.502,0.501V18.998z M3,18.998C3,19.277,2.777,19.5,2.498,19.5 H0.504C0.223,19.5,0,19.277,0,18.998v-1.997C0,16.723,0.223,16.5,0.504,16.5h1.994C2.777,16.5,3,16.723,3,17.001V18.998z M24,12.999 c0,0.279-0.223,0.501-0.502,0.501h-18c-0.273,0-0.494-0.223-0.494-0.501v-2c0-0.273,0.221-0.498,0.494-0.498h18 c0.279,0,0.502,0.225,0.502,0.498V12.999z M3,12.999C3,13.277,2.777,13.5,2.498,13.5H0.504C0.223,13.5,0,13.277,0,12.999v-2 C0,10.725,0.223,10.5,0.504,10.5h1.994C2.777,10.5,3,10.725,3,10.998V12.999z M24,7.001C24,7.274,23.777,7.5,23.498,7.5h-18 c-0.273,0-0.494-0.226-0.494-0.499V4.998c0-0.273,0.221-0.498,0.494-0.498h18C23.777,4.5,24,4.725,24,4.998V7.001z M3,7.001 C3,7.274,2.777,7.5,2.498,7.5H0.504C0.223,7.5,0,7.274,0,7.001V4.998C0,4.725,0.223,4.5,0.504,4.5h1.994C2.777,4.5,3,4.725,3,4.998 V7.001z" fill-rule="evenodd"/></svg>
+<svg ng-click="changeView('aagrid')" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d=" M4 4 L10 4 L10 10 L4 10z M13 4 L19 4 L19 10 L13 10z M22 4 L28 4 L28 10 L22 10z M4 13 L10 13 L10 19 L4 19z M13 13 L19 13 L19 19 L13 19z M22 13 L28 13 L28 19 L22 19z M4 22 L10 22 L10 28 L4 28z M13 22 L19 22 L19 28 L13 28z M22 22 L28 22 L28 28 L22 28z "/></svg>
+<svg ng-click="changeView('aagallery')" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-611 314.3 141.7 141.7" style="enable-background:new -611 314.3 141.7 141.7;" xml:space="preserve"><style type="text/css">.st0{stroke-width:5;stroke-miterlimit:10;}</style><g id="Livello_46"><path d="M-578.1,338.7c0-5.6-4.5-10.2-10.1-10.2c-5.6,0-10.1,4.6-10.1,10.2s4.5,10.2,10.1,10.2 C-582.6,348.9-578.1,344.4-578.1,338.7 M-601.3,402.2c0,0-0.1,0.1-0.2,0.4h121c0,0,0,0,0,0l-41.3-56.2c0,0-4.9-6.7-9.8,0	l-25.6,34.8l-9.4-12.8c0,0-4.9-6.7-9.8,0L-601.3,402.2z M-476.4,406.2h-129.2v-86.5h129.2L-476.4,406.2L-476.4,406.2z M-471,408.9 v-92c0-1.5-1.2-2.7-2.7-2.7h-134.6c-1.5,0-2.7,1.2-2.7,2.7v92c0,1.5,1.2,2.7,2.7,2.7h134.6C-472.3,411.6-471,410.4-471,408.9"/></g><g id="Livello_1_1_"></g><rect x="-601.5" y="421.3" class="st0" width="28.5" height="28.5"/><rect x="-555.3" y="421.3" class="st0" width="28.5" height="28.5"/><rect x="-509" y="421.3" class="st0" width="28.5" height="28.5"/></svg>
+</div>
+<span id="backbtn">&larr;</span>
+<span class="title" title="{{albumUse.title}}">{{albumUse.title}}<span class="description" title="{{albumUse.description}}">{{albumUse.description}}</span></span>
+</header>
+<section class="{{viewSelect}}"><div class="sectioncontainer">
+<div class="mainitem"><img src="include/left.png" alt="Left arrow" id="mileft" ng-click="prevBtn()" class="arrow"/><img ng-src="{{options.staticFolder}}{{options.userName}}/{{albumUse.title}}/{{mainpic.filename}}" alt="{{mainpic.description}}" style="-webkit-user-drag: none;" ng-swipe-left="swipeL();" ng-swipe-right="swipeR();" ng-click="galleryImg()" class="middle" data="{{mainpic.filename}}"/><img src="include/right.png" alt="Right arrow" ng-click="nextBtn()" id="miright" class="arrow"/><span class="title">{{mainpic.description}}</span></div>
+<div class="bottom"><div class="bottomcontainer">
+<div class="leftarrow" data-amt="-100">
+<img src="include/left.png" alt="Left arrow"/>
+</div>
+<div class="rightarrow" data-amt="100">
+<img src="include/right.png" alt="Right arrow"/>
+</div>
+<div class="uparrow" data-scroll="sectioncontainer" data-amt="-100"><img src="include/up.png" alt="Up arrow"/></div>
+<div class="downarrow" data-scroll="sectioncontainer" data-amt="100"><img src="include/down.png" alt="Down arrow"/></div>
+
+<a class="fancybox-button" rel="fancybox-button" href="{{options.staticFolder}}{{options.userName}}/{{albumUse.title}}/{{pic.filename}}" data="{{pic.filename}}" ng-repeat="pic in openAlbum track by $index" ng-click="changePic($event,pic)">
+  <div class="item">
+  <div class="imgcont"><img ng-src="{{options.staticFolder}}{{options.userName}}/{{albumUse.title}}/{{pic.filename}}" alt="{{pic.description}}" /></div><span class="title">{{pic.description}}</span></div>
+  </a>
+</div></div></div>
+</section>
+</div>
+    </div>
+</body>
+</html>
